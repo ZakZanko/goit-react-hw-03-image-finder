@@ -1,5 +1,7 @@
+import './Modal.css';
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
+//import * as basicLightbox from 'basiclightbox'
 import PropTypes from 'prop-types';
 
 const ModalRoot = document.querySelector('#ModalRoot');
@@ -8,14 +10,17 @@ class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.keyDown);
   }
+
   componentWillUnmount() {
     window.removeEventListener('keydown', this.keyDown);
   }
+
   keyDown = e => {
     if (e.code === 'Escape') {
       this.props.onClose();
     }
   };
+
   onOverlayClose = e => {
     if (e.currentTarget === e.target) {
       this.props.onClose();
